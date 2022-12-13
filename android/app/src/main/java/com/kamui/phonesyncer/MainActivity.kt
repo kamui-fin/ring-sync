@@ -50,28 +50,6 @@ interface ServerDao {
     fun update(server: Server)
 }
 
-@Database(entities = [Server::class], version = 1)
-abstract class AppDatabase : RoomDatabase() {
-    abstract fun serverDao(): ServerDao
-
-    companion object {
-        private var INSTANCE: AppDatabase? = null
-        fun getInstance(context: Context): AppDatabase {
-            synchronized(this) {
-                var instance = INSTANCE
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
-                        context.applicationContext, AppDatabase::class.java, "phonesync_database"
-                    ).fallbackToDestructiveMigration().allowMainThreadQueries().build()
-                    INSTANCE = instance
-                }
-                return instance
-            }
-        }
-    }
-}
-
-
 class MainActivity : ComponentActivity() {
     companion object {
         var db: AppDatabase? = null
