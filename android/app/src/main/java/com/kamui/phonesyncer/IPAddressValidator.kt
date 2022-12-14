@@ -1,4 +1,4 @@
-package com.kamui.phonesyncer.utils
+package com.kamui.phonesyncer
 
 import java.util.regex.Matcher
 import java.util.regex.Pattern
