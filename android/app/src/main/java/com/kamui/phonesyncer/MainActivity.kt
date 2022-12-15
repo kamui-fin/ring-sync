@@ -171,7 +171,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ServerList(servers: List<Server>, syncServers: () -> (Unit)) {
     val openDialog = remember { mutableStateOf(false) }
-    var selectedServer by remember { mutableStateOf(Server("", "")) }
+    var selectedServer by remember { mutableStateOf(Server("", "", 8080)) }
     var serverName by remember { mutableStateOf("") }
     var serverAddress by remember { mutableStateOf("") }
     Column {

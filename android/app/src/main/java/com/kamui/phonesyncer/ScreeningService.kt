@@ -22,7 +22,8 @@ class ScreeningService : CallScreeningService() {
             val db = AppDatabase.getInstance(applicationContext)
             db.serverDao().getAll().forEach { server ->
                 val ip = server.address
-                val addr = "http://$ip:8080/"
+                val port = server.port
+                val addr = "http://$ip:$port/"
 
                 val apiService = RestApiService(addr)
                 val callData = CallData(name, number)
