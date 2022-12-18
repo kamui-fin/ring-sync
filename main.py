@@ -1,4 +1,5 @@
 from flask import Flask, request
+from waitress import serve
 from plyer import notification
 import argparse
 import mpv
@@ -39,5 +40,5 @@ if __name__ == '__main__':
                         action=PortAction,
                         metavar="{0..65535}")
     args = cmd_parser.parse_args()
-    port = args.port
-    app.run(host = "0.0.0.0", port = port)
+    port = args.cmd_port
+    serve(app, listen=f"*:{port}")

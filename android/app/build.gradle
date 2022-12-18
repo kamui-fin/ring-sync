@@ -5,6 +5,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/home/kamui/dev/misc/android-keys/keys.jks')
+            storePassword 'Ne!0LDs6CRqRuJKgHdQRrKqtaUeYdsJY*TwE63G2@#z!aDlr8$'
+            keyAlias 'key0'
+            keyPassword 'Ne!0LDs6CRqRuJKgHdQRrKqtaUeYdsJY*TwE63G2@#z!aDlr8$'
+        }
+    }
     compileSdk 33
 
     defaultConfig {
@@ -13,6 +21,7 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        setProperty("archivesBaseName", "ringsync")
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -23,6 +32,7 @@ android {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+        signingConfig signingConfigs.release
     }
 
     buildTypes {

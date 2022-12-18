@@ -12,7 +12,7 @@ As usual, all contributions are gladly welcomed.
 
 ## Installation
 
-Before moving on, make sure you have python and pip installed.
+Before moving on, make sure you have python, pip, and installed. Additionally, install libmpv.so somewhere in your system library search path.
 
 1. Head over to [Releases](https://github.com/kamui-fin/ring-sync/releases) and install the latest APK file onto your Android device.
 2. Clone the repository on the computer you are setting up the server on
@@ -34,7 +34,7 @@ To ensure ring-sync is always running, you should run the server on bootup by ad
 
 ## Usage
 
-Open the android application and set it as your default phone screener when prompted. Then, simply add the server by clicking the `+` button and fill out the corresponding information (IP, port). 
+Open the android application and set it as your default phone screener when prompted. Then, simply add the server by clicking the `+` button and fill out the corresponding information (IP, port).
 
 After everything is configured, phone calls should now be notifying all the servers you have added.
 
