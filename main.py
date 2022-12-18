@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/incoming", methods=["POST"])
 def log_incoming():
     content = request.get_json(silent = True)
-    name = content["name"]
+    name = content.get("name", None)
     number = content["number"]
 
     title = "Incoming call" if not name else f"{name} is calling you"
@@ -21,8 +21,7 @@ def log_incoming():
     )
     player = mpv.MPV()
     player.play("ringtone.mp3")
-    player.wait_for_playback()
-    return "ok", 200
+    return {"msg": "ok"}, 200
 
 class PortAction(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
@@ -35,8 +34,10 @@ if __name__ == '__main__':
     cmd_parser.add_argument('-p',
                         help='Port number to connect to',
                         dest='cmd_port',
-                        default=1234,
+                        default=8080,
                         type=int,
                         action=PortAction,
                         metavar="{0..65535}")
-    app.run(host = "0.0.0.0", port = 8080)
+    args = cmd_parser.parse_args()
+    port = args.port
+    app.run(host = "0.0.0.0", port = port)

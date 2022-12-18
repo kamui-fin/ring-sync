@@ -10,10 +10,14 @@ import retrofit2.http.Headers
 import retrofit2.http.POST
 import java.util.concurrent.TimeUnit
 
+data class Result (
+    val msg: String
+)
+
 interface RestApi {
     @Headers("Content-Type: application/json")
     @POST("incoming")
-    fun notifyIncoming(@Body callData: CallData): retrofit2.Call<String>
+    fun notifyIncoming(@Body callData: CallData): retrofit2.Call<Result>
 }
 
 class RestApiService(address: String) {
@@ -31,11 +35,11 @@ class RestApiService(address: String) {
     fun addUser(callData: CallData){
         val retrofit = retrofit!!.create(RestApi::class.java)
         retrofit.notifyIncoming(callData).enqueue(
-            object : Callback<String> {
-                override fun onFailure(call: retrofit2.Call<String>, t: Throwable) {
+            object : Callback<Result> {
+                override fun onFailure(call: retrofit2.Call<Result>, t: Throwable) {
                     throw t
                 }
-                override fun onResponse( call: retrofit2.Call<String>, response: Response<String>) {
+                override fun onResponse( call: retrofit2.Call<Result>, response: Response<Result>) {
                 }
             }
         )

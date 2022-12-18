@@ -53,6 +53,7 @@ fun ServerModal(title: String, close: () -> (Unit), onChange: (Server) -> (Unit)
                     })
                 TextField(value = serverPort,
                     isError = serverPort.toInt() !in 1..655355,
+                    modifier = Modifier.padding(vertical = 10.dp),
                     onValueChange = { serverPort = it },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
